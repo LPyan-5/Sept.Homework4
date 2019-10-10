@@ -1,0 +1,120 @@
+//Exercise 1
+Write a recursive function to determine whether all digits of the number are odd or not.
+
+function oddNums(num){
+    if(num<0){
+        num=-num;
+    }
+    if(num<10){
+        if(num%2===1){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    if(num%2===1){
+        
+        return oddNums(Math.floor(num/10));
+    }
+    else{
+        return false;
+    }
+}
+
+let t=oddNums(0);
+console.log(t);
+
+
+//Exercise 2
+Given an array of numbers. Write a recursive function to find its minimal positive
+element. (if such element does not exist, return -1)․
+
+
+function minPositive(arr,first=Infinity){
+    if(arr.length===0){
+        if(first===Infinity){
+            return -1;
+        }
+        else{
+            return first;
+        }
+    }
+    let n=arr.shift();
+    if(n>0&&n<first){
+        first=n;
+        
+    }
+    return minPositive(arr,first);
+}
+
+let res=minPositive([-2,0,6,8,-5,2,6]);
+console.log(res);
+
+
+
+//Exercise 3
+Given an array of numbers which is almost sorted in ascending order. Find the index
+where sorting order is violated.
+
+
+function violatedAsc(arr){
+    if(arr.length===1||!arr.length){
+        return -1;
+    }
+    let n=arr.pop();
+    if(n>=arr[arr.length-1]){
+        return violatedAsc(arr);
+    }
+    else{
+        return arr.length;
+    }
+}
+let index=violatedAsc([-5,-9,1,3,8,10]);
+console.log(index);
+
+
+//Exercise 4
+Given an array. Write a recursive function that removes the first element and returns the
+given array. (without using arr.shift()).
+
+
+function removeFirstElem(array,i=0){
+    if(i===1){
+        return array;
+   }
+    array=array.slice(1);
+    return removeFirstElem(array,i+1);
+}
+
+let arr=removeFirstElem([8,6,3,4,12]);
+console.log(arr);
+
+
+//Exercise 5
+Given an array and a number N. Write a recursive function that rotates an array N
+places to the left. (Hint: to add element to the beginning use arr.unshift()).
+
+
+function rotateNTimes(arr,N){
+    if(N===0){
+        return arr;
+    }
+    if(!arr.length){
+        return "Can`t rotate an empty array.";
+    }
+    if(N<0){
+        let k=arr.pop();
+        arr.unshift(k);
+        return rotateNTimes(arr,N+1);
+    }
+    else{
+        let k=arr.shift();
+        arr.push(k);
+        return rotateNTimes(arr,N-1);
+    }
+}
+let newArr1=rotateNTimes(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'], 7);
+let newArr2=rotateNTimes(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'], -4);
+console.log(newArr1);
+console.log(newArr2);
