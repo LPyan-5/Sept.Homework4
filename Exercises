@@ -84,11 +84,11 @@ function removeFirstElem(array,i=0){
     if(i===1){
         return array;
    }
-    array=array.slice(1);
+    array.splice(0,1);
     return removeFirstElem(array,i+1);
 }
 
-let arr=removeFirstElem([8,6,3,4,12]);
+let arr=removeFirstElem([6,3,4,12]);
 console.log(arr);
 
 
